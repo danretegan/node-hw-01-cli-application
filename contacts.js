@@ -7,13 +7,15 @@ import { readFile, writeFile } from "fs/promises";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const contactsPath = `${__dirname}\\db\\contacts.json`;
 
-//TODO CRUD:
+// Funcție pentru încărcarea datelor de contact din fișier:
+async function loadContacts() {
+  const rawData = await readFile(contactsPath, { encoding: "utf8" });
+  return JSON.parse(rawData);
+}
 
-//! Read:
 async function listContacts() {
   try {
-    const rawData = await readFile(contactsPath, { encoding: "utf8" });
-    const contacts = JSON.parse(rawData);
+    const contacts = await loadContacts();
     console.table(contacts);
   } catch (err) {
     console.log("There is an error:".bgRed);
@@ -21,11 +23,9 @@ async function listContacts() {
   }
 }
 
-//! Create:
 async function addContact(name, email, phone) {
   try {
-    const rawData = await readFile(contactsPath, { encoding: "utf8" });
-    const contacts = JSON.parse(rawData);
+    const contacts = await loadContacts();
 
     if (!name || !email || !phone) {
       throw new Error("Invalid data provided!");
@@ -50,11 +50,9 @@ async function addContact(name, email, phone) {
   }
 }
 
-//! Delete:
 async function removeContact(contactId) {
   try {
-    const rawData = await readFile(contactsPath, { encoding: "utf8" });
-    const contacts = JSON.parse(rawData);
+    const contacts = await loadContacts();
 
     const index = contacts.findIndex((contact) => contact.id === contactId);
     if (index === -1) {
@@ -72,25 +70,17 @@ async function removeContact(contactId) {
   }
 }
 
-//! Get Contact by ID:
 async function getContactById(contactId) {
   try {
-    // Citim datele din fișier
-    const rawData = await readFile(contactsPath, { encoding: "utf8" });
-    // Transformam datele brute citite din fișier într-un obiect JavaScript:
-    const contacts = JSON.parse(rawData);
+    const contacts = await loadContacts();
 
-    // Căutăm contactul în listă după ID
     const contact = contacts.find((contact) => contact.id === contactId);
-
-    // Verificăm dacă contactul există
     if (!contact) {
       throw new Error("Contact not found!");
     }
 
-    // Afisăm contactul găsit în consolă
     console.log("Contact found:", contact);
-    return contact; // Returnăm contactul găsit
+    return contact;
   } catch (err) {
     console.log("There is an error:".bgRed);
     console.error(err);
