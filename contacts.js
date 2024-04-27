@@ -49,3 +49,29 @@ async function addContact(name, email, phone) {
     console.error(err);
   }
 }
+
+//! Delete:
+async function removeContact(contactId) {
+  try {
+    const rawData = await readFile(contactsPath, { encoding: "utf8" });
+    const contacts = JSON.parse(rawData);
+
+    // Găsim produsul în listă folosind contactId:
+    const index = contacts.findIndex((contact) => contact.id === contactId);
+    // Verificăm dacă produsul există:
+    if (index === -1) {
+      throw new Error("Contact not found!");
+    }
+    // Ștergerea contactului din listă:
+    contacts.splice(index, 1);
+
+    // Rescrierea datelor actualizate în fișier:
+    const parsedContacts = JSON.stringify(contacts);
+    await writeFile(contactsPath, parsedContacts);
+
+    console.log("The contact has been deleted successfully!".bgGreen);
+  } catch (err) {
+    console.log("There is an error:".bgRed);
+    console.error(err);
+  }
+}
