@@ -1,19 +1,19 @@
----
-# Obținerea și afișarea întregii liste de contacte sub formă de tabel (console.table):
+# Foloseste urmatoarele comenzi
 
-    node index.js list
+### Obținerea și afișarea întregii liste de contacte sub formă de tabel (console.table):
 
-# Obținerea unui contact după id:
+`node index.js list`
 
-    node index.js get idxyz123
-    inlocuieste 'idxyz123' cu id-ul dorit!
+### Obținerea unui contact după id:
 
-# Adăugarea unui contact:
+`node index.js get idxyz123`
+_inlocuieste 'idxyz123' cu id-ul dorit!_
 
-    node index.js add Mango mango@gmail.com 322-22-22
+### Adăugarea unui contact:
 
-# Ștergerea unui contact:
+`node index.js add Mango mango@gmail.com 322-22-22`
 
-    node index.js remove idxyz123
-    inlocuieste 'idxyz123' cu id-ul dorit!
----
+### Ștergerea unui contact:
+
+`node index.js remove idxyz123`
+_inlocuieste 'idxyz123' cu id-ul dorit!_
