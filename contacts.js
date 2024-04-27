@@ -56,20 +56,41 @@ async function removeContact(contactId) {
     const rawData = await readFile(contactsPath, { encoding: "utf8" });
     const contacts = JSON.parse(rawData);
 
-    // Găsim produsul în listă folosind contactId:
     const index = contacts.findIndex((contact) => contact.id === contactId);
-    // Verificăm dacă produsul există:
     if (index === -1) {
       throw new Error("Contact not found!");
     }
-    // Ștergerea contactului din listă:
     contacts.splice(index, 1);
 
-    // Rescrierea datelor actualizate în fișier:
     const parsedContacts = JSON.stringify(contacts);
     await writeFile(contactsPath, parsedContacts);
 
     console.log("The contact has been deleted successfully!".bgGreen);
+  } catch (err) {
+    console.log("There is an error:".bgRed);
+    console.error(err);
+  }
+}
+
+//! Get Contact by ID:
+async function getContactById(contactId) {
+  try {
+    // Citim datele din fișier
+    const rawData = await readFile(contactsPath, { encoding: "utf8" });
+    // Transformam datele brute citite din fișier într-un obiect JavaScript:
+    const contacts = JSON.parse(rawData);
+
+    // Căutăm contactul în listă după ID
+    const contact = contacts.find((contact) => contact.id === contactId);
+
+    // Verificăm dacă contactul există
+    if (!contact) {
+      throw new Error("Contact not found!");
+    }
+
+    // Afisăm contactul găsit în consolă
+    console.log("Contact found:", contact);
+    return contact; // Returnăm contactul găsit
   } catch (err) {
     console.log("There is an error:".bgRed);
     console.error(err);
