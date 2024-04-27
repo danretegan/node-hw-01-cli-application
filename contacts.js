@@ -7,13 +7,12 @@ import { readFile, writeFile } from "fs/promises";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const contactsPath = `${__dirname}\\db\\contacts.json`;
 
-// Funcție pentru încărcarea datelor de contact din fișier:
 async function loadContacts() {
   const rawData = await readFile(contactsPath, { encoding: "utf8" });
   return JSON.parse(rawData);
 }
 
-async function listContacts() {
+export async function listContacts() {
   try {
     const contacts = await loadContacts();
     console.table(contacts);
@@ -23,7 +22,7 @@ async function listContacts() {
   }
 }
 
-async function addContact(name, email, phone) {
+export async function addContact(name, email, phone) {
   try {
     const contacts = await loadContacts();
 
@@ -50,7 +49,7 @@ async function addContact(name, email, phone) {
   }
 }
 
-async function removeContact(contactId) {
+export async function removeContact(contactId) {
   try {
     const contacts = await loadContacts();
 
@@ -70,7 +69,7 @@ async function removeContact(contactId) {
   }
 }
 
-async function getContactById(contactId) {
+export async function getContactById(contactId) {
   try {
     const contacts = await loadContacts();
 
