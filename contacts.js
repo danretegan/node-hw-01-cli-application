@@ -34,9 +34,9 @@ async function addContact(name, email, phone) {
     const newContactId = randomUUID();
     const newContact = {
       id: newContactId,
-      name: name,
-      email: email,
-      phone: phone,
+      name,
+      email,
+      phone,
     };
 
     contacts.push(newContact);
