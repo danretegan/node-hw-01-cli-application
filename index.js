@@ -6,8 +6,9 @@ import {
   removeContact,
   getContactById,
 } from "./contacts.js";
+import colors from "colors";
 
-yargs(hideBin(process.argv))
+const argv = yargs(hideBin(process.argv))
   .command({
     command: "list",
     describe: "List all contacts",
@@ -40,39 +41,68 @@ yargs(hideBin(process.argv))
     describe: "Remove contact by ID",
     builder: (yargs) => yargs.positional("id", { describe: "Contact ID" }),
     handler: (argv) => invokeAction({ action: "remove", id: argv.id }),
-  }).help(`
-    # Obținerea și afișarea întregii liste de contacte sub formă de tabel (console.table):
-    node index.js list
+  }).argv;
 
-    # Obținerea unui contact după id:
-    node index.js get idxyz3
+const text = `
+  # Obținerea și afișarea întregii liste de contacte sub formă de tabel (console.table):
+  node index.js list
 
-    # Adăugarea unui contact:
-    node index.js add Mango mango@gmail.com 322-22-22
+  # Obținerea unui contact după id:
+  node index.js get idxyz123 => inlocuieste 'idxyz123' cu id-ul dorit!
 
-    # Ștergerea unui contact:
-    node index.js remove idxyz3
-  `).argv;
+  # Adăugarea unui contact:
+  node index.js add Mango mango@gmail.com 322-22-22
+
+  # Ștergerea unui contact:
+  node index.js remove idxyz123 => inlocuieste 'idxyz123' cu id-ul dorit!
+`;
+
+const coloredText = text
+  .split("\n")
+  .map((line) => (line.startsWith("  node") ? line.red : line))
+  .join("\n");
+
+if (argv._.length === 0) {
+  console.log(coloredText);
+} else {
+  console.error("Unknown action type: " + argv._[0].red);
+}
 
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      listContacts();
+      try {
+        listContacts();
+      } catch (error) {
+        console.error("Error listing contacts:", error.message.red);
+      }
       break;
 
     case "get":
-      getContactById(id);
+      try {
+        getContactById(id);
+      } catch (error) {
+        console.error("Error getting contact by ID:", error.message.red);
+      }
       break;
 
     case "add":
-      addContact(name, email, phone);
+      try {
+        addContact(name, email, phone);
+      } catch (error) {
+        console.error("Error adding contact:", error.message.red);
+      }
       break;
 
     case "remove":
-      removeContact(id);
+      try {
+        removeContact(id);
+      } catch (error) {
+        console.error("Error removing contact by ID:", error.message.red);
+      }
       break;
 
     default:
-      console.warn("\x1B[31m Unknown action type!");
+      console.error("Unknown action type: " + action.red);
   }
 }
