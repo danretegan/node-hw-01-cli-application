@@ -1,4 +1,3 @@
-import colors from "colors";
 import { dirname } from "path";
 import { randomUUID } from "crypto";
 import { fileURLToPath } from "url";
