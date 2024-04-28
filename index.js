@@ -68,6 +68,6 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     default:
-      console.error("Unknown action type: " + action.green);
+      console.warn("\x1B[31m Unknown action type!");
   }
 }
