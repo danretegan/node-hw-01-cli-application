@@ -8,7 +8,7 @@ import {
 } from "./contacts.js";
 import colors from "colors";
 
-const argv = yargs(hideBin(process.argv))
+yargs(hideBin(process.argv))
   .command({
     command: "list",
     describe: "List all contacts",
@@ -65,6 +65,6 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     default:
-      console.error("Unknown action type: " + action.red);
+      console.warn("\x1B[31m Unknown action type!");
   }
 }

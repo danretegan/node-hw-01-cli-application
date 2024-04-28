@@ -11,13 +11,17 @@ async function loadContacts() {
   return JSON.parse(rawData);
 }
 
+async function handleError(err) {
+  console.log("There is an error:".bgRed);
+  console.error(err);
+}
+
 export async function listContacts() {
   try {
     const contacts = await loadContacts();
     console.table(contacts);
   } catch (err) {
-    console.log("There is an error:".bgRed);
-    console.error(err);
+    handleError(err);
   }
 }
 
@@ -43,8 +47,7 @@ export async function addContact(name, email, phone) {
 
     console.log("The contact has been created successfully!".bgGreen);
   } catch (err) {
-    console.log("There is an error:".bgRed);
-    console.error(err);
+    handleError(err);
   }
 }
 
@@ -63,8 +66,7 @@ export async function removeContact(contactId) {
 
     console.log("The contact has been deleted successfully!".bgGreen);
   } catch (err) {
-    console.log("There is an error:".bgRed);
-    console.error(err);
+    handleError(err);
   }
 }
 
@@ -80,7 +82,6 @@ export async function getContactById(contactId) {
     console.log("Contact found:", contact);
     return contact;
   } catch (err) {
-    console.log("There is an error:".bgRed);
-    console.error(err);
+    handleError(err);
   }
 }
