@@ -8,7 +8,10 @@ import {
 } from "./contacts.js";
 import colors from "colors";
 
+const scriptName = "node index.js";
+
 yargs(hideBin(process.argv))
+  .scriptName(scriptName)
   .command({
     command: "list",
     describe: "List all contacts",
@@ -65,6 +68,6 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     default:
-      console.warn("\x1B[31m Unknown action type!");
+      console.error("Unknown action type: " + action.green);
   }
 }
