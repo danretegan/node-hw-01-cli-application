@@ -11,14 +11,14 @@ Scriptul `start:dev`, pornește `index.js` folosind `nodemon`.
 
 Creează folderul `db` la rădăcina proiectului.
 
-Pentru a stoca contactele, descarcă și folosește fișierul contacts.json plasându-l în folderul db.
+Pentru a stoca contactele, descarcă și folosește fișierul `contacts.json` plasându-l în folderul `db`.
 
-La rădăcina proiectului, creează fișierul contacts.js.
+La rădăcina proiectului, creează fișierul `contacts.js`.
 
-Importă modulele fs și path pentru a lucra cu sistemul de fișiere.
-Declară variabila contactsPath și atribuie-i ca valoare calea către fișierul contacts.json. Pentru a construi această cale, utilizează metodele furnizate de modulul path.
-Adaugă funcții pentru a lucra cu colecția de contacte. În funcții, folosește modulul fs și metodele readFile() și writeFile().
-Exportă funcțiile create folosind module.exports.
+Importă modulele `fs` și `path` pentru a lucra cu sistemul de fișiere.
+Declară variabila `contactsPath` și atribuie-i ca valoare calea către fișierul `contacts.json`. Pentru a construi această cale, utilizează metodele furnizate de modulul `path`.
+Adaugă funcții pentru a lucra cu colecția de contacte. În funcții, folosește modulul `fs` și metodele `readFile()` și `writeFile()`.
+Exportă funcțiile create folosind `module.exports`.
 
 contacts.js
 
@@ -49,11 +49,11 @@ function addContact(name, email, phone) {
 
 # Pasul 3
 
-Importă modulul contacts.js în fișierul index.js și testează funcțiile pentru lucrul cu contactele.
+Importă modulul `contacts.js` în fișierul `index.js` și testează funcțiile pentru lucrul cu contactele.
 
 # Pasul 4
 
-În fișierul index.js se importă pachetul yargs pentru a parsa argumentele liniei de comandă. Folosește funcția invokeAction(), care primește tipul acțiunii și argumentele necesare. Funcția apelează metoda necesară din fișierul contacts.js și îi transmite argumentele necesare.
+În fișierul `index.js` se importă pachetul `yargs` pentru a parsa argumentele liniei de comandă. Folosește funcția `invokeAction()`, care primește tipul acțiunii și argumentele necesare. Funcția apelează metoda necesară din fișierul `contacts.js` și îi transmite argumentele necesare.
 
 index.js
 
@@ -87,7 +87,7 @@ function invokeAction({ action, id, name, email, phone }) {
 invokeAction(argv);
 ```
 
-De asemenea, poți utiliza modulul commander pentru a parsa argumentele liniei de comandă. Aceasta este o alternativă mai populară decât modulul yargs.
+De asemenea, poți utiliza modulul `commander` pentru a parsa argumentele liniei de comandă. Aceasta este o alternativă mai populară decât modulul `yargs`.
 
 ```js
 const { Command } = require("commander");
@@ -154,7 +154,7 @@ node index.js --action add --name Mango --email mango@gmail.com --phone 322-22-2
 
 # Pasul 6 - Predarea temei
 
-Capturile de ecran pot fi încărcate în orice serviciu gratuit de stocare a imaginilor în cloud (Exemplu: monosnap, imgbb.com) și link-urile corespunzătoare vor fi adăugate în fișierul README.md. Creează acest fișier la rădăcina proiectului.
+Capturile de ecran pot fi încărcate în orice serviciu gratuit de stocare a imaginilor în cloud (Exemplu: `monosnap`, `imgbb.com`) și link-urile corespunzătoare vor fi adăugate în fișierul `README.md`. Creează acest fișier la rădăcina proiectului.
 
 # Criterii de acceptare a temei
 
