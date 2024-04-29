@@ -17,3 +17,7 @@ _inlocuieste 'idxyz123' cu id-ul dorit!_
 
 `node index.js remove idxyz123`
 _inlocuieste 'idxyz123' cu id-ul dorit!_
+
+### Help:
+
+`node index.js help`

@@ -55,3 +55,11 @@
 <p>
 <img src="https://i.ibb.co/vXN3qfb/not-enough-arguments.jpg" alt="Not enough non-option arguments: got 2, need at least 3" border="0" width="600" title="Not enough non-option arguments: got 2, need at least 3">
 <p>
+
+### Help:
+
+`node index.js help`
+
+<p>
+<img src="https://i.ibb.co/52dwnBG/help.jpg" alt="Help" border="0" width="600" title="Help">
+</p>
